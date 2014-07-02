@@ -1,0 +1,9 @@
+
+src/tags
+obj/*
+build/*.tcl
+build/debug/*
+build/ascii2tcl
+
+
+
