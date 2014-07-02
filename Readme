@@ -1,0 +1,16 @@
+#!
+
+# ==================   ascii2tcl - Version 1.0  ====================
+
+      Author      :  Bei Yu  (UT Austin)                             
+      Last Update :  07/2014                                         
+      Function    :  read ascii, dump out tcl                        
+
+# ==================================================================
+
+
+# ==== Command-Line Usage
+"-in"         : followed by input library (default: "input.ascii"). 
+"-out"        : followed by input library (default: "output.tcl"). 
+
+
