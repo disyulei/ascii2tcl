@@ -4,6 +4,8 @@ obj/*
 build/*.tcl
 build/debug/*
 build/ascii2tcl
+build/*.out
+build/*.gds
 
 
 

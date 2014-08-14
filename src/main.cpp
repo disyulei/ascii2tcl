@@ -25,7 +25,7 @@ void
 printWelcome()
 {
   printf("\n");
-  printf("==================   ascii2tcl - Version 1.0  ====================\n");
+  printf("==================   ascii2tcl - Version 1.1  ====================\n");
   printf("   Author      :  Bei Yu  (UT Austin)                             \n");
   printf("   Last Update :  07/2014                                         \n");
   printf("   Function    :  read ascii, dump out tcl                        \n");

@@ -1,9 +1,9 @@
 #!
 
-# ==================   ascii2tcl - Version 1.0  ====================
+# ==================   ascii2tcl - Version 1.1  ====================
 
       Author      :  Bei Yu  (UT Austin)                             
-      Last Update :  07/2014                                         
+      Last Update :  08/2014                                         
       Function    :  read ascii, dump out tcl                        
 
 # ==================================================================
@@ -12,5 +12,13 @@
 # ==== Command-Line Usage
 "-in"         : followed by input library (default: "input.ascii"). 
 "-out"        : followed by input library (default: "output.tcl"). 
+
+
+# ==== Note:
+Since version 1.1, boost is required. Please specify path to boost in $(BOOST_HOME)
+
+
+# ==== Log:
+08/2014:  version 1.1: boost is included to help parse input ascii
 
 

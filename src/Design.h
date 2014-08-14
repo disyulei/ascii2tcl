@@ -1,8 +1,8 @@
 #ifndef _DESIGN_H_
 #define _DESIGN_H_
 
+#include <boost/algorithm/string.hpp>
 #include "bLib/bLibBase.h"
-//#include "bLib/bLibPtr.h"
 #include "bLib/bLibShape.h"
 #include "main.h"
 

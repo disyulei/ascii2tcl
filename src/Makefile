@@ -1,8 +1,7 @@
-CC        =  g++
-CXX       =  g++34
-CFLAGS    =  -funroll-all-loops -O2 -m64 -fPIC -Wno-deprecated 
-#CFLAGS   =  -g -Wno-deprecated 
-CCLNFLAGS = 
+CC       =  g++
+CFLAGS   =  -funroll-all-loops -O2 -m64 -fPIC -Wno-deprecated 
+#CFLAGS  =  -g -Wno-deprecated 
+BOOST_I  =-I$(BOOST_HOME)
 
 MKDIR = if [ ! -d $(@D) ]; then mkdir $(@D); fi
 BPATH = ../build/
@@ -14,13 +13,16 @@ EXE	= $(BPATH)ascii2tcl
 
 .SUFFIXES: .cc .cpp .o .x
 
-$(EXE): $(OBJS)
+$(EXE): $(OBJS) tags
 	@$(MKDIR)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(CCLNFLAGS) 
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
 $(OPATH)%.o:%.cpp
 	@$(MKDIR)
 	$(CC) $(CFLAGS) -c -o $@ $< $(BOOST_I)
+
+tags: $(SRCS)
+	ctags -R *  bLib/*.h
 
 clean:
 	rm -f *.o *~ $(EXE) $(OPATH)*
