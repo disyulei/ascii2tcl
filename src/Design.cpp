@@ -246,10 +246,10 @@ Design::readBlock(int round, ifstream& in)
 #endif
   // new method to parse str
 #if 1
-  string delimiters(" :,");
+  string delimiters("\t :,");
   vector<string> parts;
-  boost::split(parts, str, boost::is_any_of(delimiters));
-  for (int i=0; i<parts.size(); i++)
+  boost::split(parts, str, boost::is_any_of(delimiters), boost::token_compress_on);
+  for (int i=1; i<parts.size(); i++)
   {
     int x = atoi(parts[i].c_str());
     i++; if (i>=parts.size()) break;
