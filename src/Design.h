@@ -2,8 +2,8 @@
 #define _DESIGN_H_
 
 #include <boost/algorithm/string.hpp>
-#include "bLib/bLibBase.h"
-#include "bLib/bLibShape.h"
+#include "bLibBase.h"
+#include "bLibShape.h"
 #include "main.h"
 
 class Design
@@ -25,8 +25,8 @@ protected:
   std::set<std::string>   m_tclFileNames;   // all output tcl filenames
   double                  m_ratio;
 
-  std::vector< std::vector<bLib::myShape*> >     m_Metals;    // input myShape
-  std::map<int, int>                             m_layer2Id;
+  std::vector< std::vector<bLib::bShape*> >     m_Metals;    // input bShape
+  std::map<int, int>                            m_layer2Id;
 
   // local functions
   void   readAscii(int);

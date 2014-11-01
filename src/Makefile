@@ -1,7 +1,8 @@
 CC       =  g++
 CFLAGS   =  -funroll-all-loops -O2 -m64 -fPIC -Wno-deprecated 
 #CFLAGS  =  -g -Wno-deprecated 
-BOOST_I  =-I$(BOOST_HOME)
+BOOST_I  =-I$(BOOST_DIR)
+BLIB_I   =-I./bLib
 
 MKDIR = if [ ! -d $(@D) ]; then mkdir $(@D); fi
 BPATH = ../build/
@@ -19,10 +20,10 @@ $(EXE): $(OBJS) tags
 
 $(OPATH)%.o:%.cpp
 	@$(MKDIR)
-	$(CC) $(CFLAGS) -c -o $@ $< $(BOOST_I)
+	$(CC) $(CFLAGS) -c -o $@ $< $(BOOST_I) $(BLIB_I)
 
 tags: $(SRCS)
-	ctags -R *  bLib/*.h
+	ctags -R *
 
 clean:
 	rm -f *.o *~ $(EXE) $(OPATH)*

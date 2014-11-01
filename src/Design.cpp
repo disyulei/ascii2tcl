@@ -84,12 +84,12 @@ Design::outputTcl(int lid, ofstream& out)
 
   for (int i=0; i<m_Metals[id].size(); i++)
   {
-    myShape* pmyshape = m_Metals[id][i];
-    if (pmyshape->getPointNum() <= 0) continue;
+    bShape* pbshape = m_Metals[id][i];
+    if (pbshape->getPointNum() <= 0) continue;
     out<<"$L create polygon debug "<<lid<<" ";
-    for (int j=0; j<pmyshape->getPointNum(); j++)
+    for (int j=0; j<pbshape->getPointNum(); j++)
     {
-      out<<pmyshape->getPointX(j)<<" "<<pmyshape->getPointY(j)<<" ";
+      out<<pbshape->getPointX(j)<<" "<<pbshape->getPointY(j)<<" ";
     }
     out<<endl;
   }
@@ -144,17 +144,17 @@ Design::outputAscii(int lid, ofstream& out)
 
   for (int i=0; i<m_Metals[id].size(); i++)
   {
-    myShape* pmyshape = m_Metals[id][i];
-    if (pmyshape->getPointNum() <= 0) continue;
+    bShape* pbshape = m_Metals[id][i];
+    if (pbshape->getPointNum() <= 0) continue;
     out<<"BOX"<<endl;
     out<<"LAYER: "<<lid<<endl;
     out<<"BOXTYPE: 0"<<endl;
     out<<"XY: ";
-    for (int j=0; j<pmyshape->getPointNum(); j++)
+    for (int j=0; j<pbshape->getPointNum(); j++)
     {
-      out << pmyshape->getPointX(j) << ", " << pmyshape->getPointY(j) << ", ";
+      out << pbshape->getPointX(j) << ", " << pbshape->getPointY(j) << ", ";
     }
-    out << pmyshape->getPointX(0) << ", " << pmyshape->getPointY(0) << endl;
+    out << pbshape->getPointX(0) << ", " << pbshape->getPointY(0) << endl;
     out<<"ENDEL"<<endl;
   }
 }
@@ -207,7 +207,7 @@ Design::readBlock(int round, ifstream& in)
   }
 
   // read vpoints
-  vector<myPoint> vpoints;  vpoints.clear();
+  vector<bPoint> vpoints;  vpoints.clear();
   int xl = INT_MAX, yl = INT_MAX;
   int xh = INT_MIN, yh = INT_MIN;
   getline(in, str);  if (str.size() <= 0) return false;
@@ -235,7 +235,7 @@ Design::readBlock(int round, ifstream& in)
         x = (int) (x / m_ratio);
         y = (int) (y / m_ratio);
       }
-      vpoints.push_back( myPoint(x, y) );  // New point
+      vpoints.push_back( bPoint(x, y) );  // New point
       if (xl > x) xl = x;
       if (yl > y) yl = y;
       if (xh < x) xh = x;
@@ -259,7 +259,7 @@ Design::readBlock(int round, ifstream& in)
       x = (int) (x / m_ratio);
       y = (int) (y / m_ratio);
     }
-    vpoints.push_back( myPoint(x, y) );  // New point
+    vpoints.push_back( bPoint(x, y) );  // New point
     if (xl > x) xl = x;
     if (yl > y) yl = y;
     if (xh < x) xh = x;
@@ -269,11 +269,11 @@ Design::readBlock(int round, ifstream& in)
   if (vpoints.size() == 0) {return true;}
   vpoints.resize( vpoints.size()-1, true );
 
-  myShape* pmyshape = new myShape(xl, yl, xh, yh);
-  pmyshape->setPoints( vpoints );
+  bShape* pbshape = new bShape(xl, yl, xh, yh);
+  pbshape->setPoints( vpoints );
   int lid = m_layer2Id[layer];
-  pmyshape->setId( m_Metals[lid].size() );
-  m_Metals[ lid ].push_back(pmyshape);
+  pbshape->setId( m_Metals[lid].size() );
+  m_Metals[ lid ].push_back(pbshape);
 
   if (false == readSearchUntil( in, str, "ENDEL" )) return false;
   return true;
